@@ -1,0 +1,22 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  tasks:
+    - name: check webpage
+      block:
+        uri:
+          url: "http://{{ ansible_hostname }}"
+        register: output_web
+      rescue:
+      - service:
+          name: httpd
+          state: started
+      always:
+      
+    - name: show output_web content
+      debug:
+        msg: "{{ output_web }}"
+    - name: create test file
+      file:
+        path: /var/tmp/prueba2
+        state: touch

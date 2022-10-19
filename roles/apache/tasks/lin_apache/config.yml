@@ -1,0 +1,10 @@
+---
+- name: create welcome package
+  copy: 
+    src: index.html
+    dest: /var/www/html/index.html
+  notify: "reinicio apache"
+- name: desplegamos template
+  template:
+    src: apache_template.j2
+    dest: /var/tmp/fichero_template

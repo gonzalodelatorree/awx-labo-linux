@@ -1,0 +1,7 @@
+---
+# defaults file for apache
+apache_packages:
+  - apache
+  - telnet
+  
+apache_service: httpd

@@ -1,0 +1,21 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  gather_facts: no
+  tasks:
+  - name: instalo paquete de apache
+    package: 
+      name: httpd
+      state: latest
+  - name: levantamos httpd y persistente al reboot
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+  - name: Crear página de inicio
+    copy:
+      content: "Bienvenido!"
+      dest: "/var/www/html/index.html"
+
+
+
